@@ -17,7 +17,7 @@ public class Main {
         //- program wypisuje już ile lat żyjesz
         //- program wypisuje w który dzień tygodnia się urodziłeś
 
-        String input = "12-03-2022";
+        String input = "05-09-1988";
         LocalDate data = null;
         try {
            data = LocalDate.parse(input, dtr);
@@ -27,6 +27,9 @@ public class Main {
         System.out.println(data);
         czyPozniej(data);
         System.out.println(ileDni(data));
+        System.out.println(ileMiesiecy(data));
+        System.out.println(ileLat(data));
+        System.out.println(dzienTygodnia(data));
 
         /*
          * Stwórz klase Osoba, która ma imie, nazisko, pesel (na jego podstawie tworzymy
@@ -74,7 +77,19 @@ public class Main {
         }
     }
     private static long ileDni(LocalDate data){
-        return ChronoUnit.DAYS.between(LocalDate.now(), data);
+        return ChronoUnit.DAYS.between(data, LocalDate.now());
+    }
+
+    private static long ileMiesiecy(LocalDate data){
+        return ChronoUnit.MONTHS.between(data, LocalDate.now());
+    }
+
+    private static long ileLat(LocalDate data){
+        return ChronoUnit.YEARS.between(data, LocalDate.now());
+    }
+
+    private static String dzienTygodnia(LocalDate data){
+        return data.getDayOfWeek().toString();
     }
 
 }
